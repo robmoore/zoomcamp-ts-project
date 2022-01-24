@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+keras-tcn = "*"
+jupyter = "*"
+matplotlib = "*"
+scikit-learn = "*"
+nbeats-keras = "*"
+yahooquery = "*"
+numpy = "*"
+keras-tuner = "*"
+pandas = "*"
+gunicorn = "*"
+flask = "*"
+statsmodels = "*"
+slidingwindow-generator = "*"
+appnope = {version = "*", markers = "sys_platform == 'linux' or sys_platform == 'darwin'"}
+requests = "*"
+tensorflow = "*"
+isort = "*"
+black = {extras = ["jupyter"], version = "*"}
+tensorflow-addons = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9.5"
