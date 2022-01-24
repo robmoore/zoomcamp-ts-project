@@ -23,6 +23,7 @@ tensorflow = "*"
 isort = "*"
 black = {extras = ["jupyter"], version = "*"}
 tensorflow-addons = "*"
+loguru = "*"
 
 [dev-packages]
 

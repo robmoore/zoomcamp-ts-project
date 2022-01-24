@@ -13,8 +13,15 @@ from tcn import TCN
 from yahooquery import Ticker
 
 from constants import INPUT_LENGTH, LABELS_LENGTH
-from models import (last_baseline, lstm, nbeats, repeat_baseline, tcn,
-                    tcn_for_tuning, tuned_tcn)
+from models import (
+    last_baseline,
+    lstm,
+    nbeats,
+    repeat_baseline,
+    tcn,
+    tcn_for_tuning,
+    tuned_tcn,
+)
 from plotable_window_generator import PlotableWindowGenerator
 
 MODEL_FUNCS = {
@@ -67,6 +74,19 @@ def build_model(
 
     compile_model(model)
 
+    fit_model(model, window, verbose, epochs, batch_size, patience)
+
+    return model
+
+
+def fit_model(
+    model,
+    window,
+    verbose=0,
+    epochs=1000,
+    batch_size=32,
+    patience=100,
+):
     model.fit(
         window.train(),
         validation_data=window.val(),
@@ -75,7 +95,7 @@ def build_model(
         verbose=verbose,
         callbacks=[
             tf.keras.callbacks.EarlyStopping(
-                monitor="val_loss",
+                monitor="val_root_mean_squared_error",
                 min_delta=1e-4,
                 patience=patience,
                 verbose=1,
@@ -85,8 +105,6 @@ def build_model(
             tfa.callbacks.TQDMProgressBar(),
         ],
     )
-
-    return model
 
 
 def build_model_for_tuning(hp):

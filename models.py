@@ -51,9 +51,10 @@ def tuned_tcn() -> tf.keras.Sequential:
     model = tf.keras.Sequential()
     model.add(
         TCN(
-            nb_filters=224,
-            kernel_size=7,
-            dropout_rate=0.1,
+            nb_filters=180,
+            kernel_size=6,
+            dropout_rate=0.5,
+            dilations=[1, 2, 4, 8],
             input_shape=(INPUT_LENGTH, FEATURES_LENGTH),
         )
     )
@@ -84,18 +85,15 @@ def tcn_for_tuning(hp):
     model = tf.keras.Sequential()
     model.add(
         TCN(
-            nb_filters=hp.Int("nb_filters", min_value=64, max_value=256, step=32),
+            nb_filters=hp.Int("nb_filters", min_value=100, max_value=200, step=10),
             kernel_size=hp.Int("kernel_size", min_value=2, max_value=8),
-            dropout_rate=hp.Choice("dropout_rate", values=[0.1, 0.05, 0.0]),
+            dropout_rate=hp.Choice(
+                "dropout_rate", values=[0.1, 0.05, 0.01, 0.001, 0.0]
+            ),
+            dilations=[1, 2, 4, 8],
             input_shape=(INPUT_LENGTH, FEATURES_LENGTH),
         )
     )
     model.add(tf.keras.layers.Dense(LABELS_LENGTH))
 
     return model
-
-
-# nb_filters: 110
-# kernel_size: 1
-# dropout_rate: 0.0
-# 0.10593746602535248

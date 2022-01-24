@@ -1,4 +1,4 @@
-project=zoomcamp-ts-project
+project=zoomcamp-ts
 project_dir=/app
 
 .PHONY: build

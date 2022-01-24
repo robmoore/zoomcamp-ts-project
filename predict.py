@@ -1,14 +1,14 @@
 import logging
 import os
 import pickle
-
-import tensorflow as tf
+import numpy as np
+import utils
 from flask import Flask, jsonify, request
 
 with open("bin/scaler.bin", mode="rb") as file:
     scaler = pickle.load(file)
 
-model = tf.keras.models.load_model("bin/tuned_tcn")
+model = utils.load_model("tuned_tcn")
 
 
 app = Flask("S&P 500 price forecaster")
@@ -32,8 +32,9 @@ def predict():
     if not prices:
         return jsonify(error="Empty requests are not supported"), 400
 
+    prices = np.array(prices).reshape(-1, 1)
     # noinspection PyPep8Naming
-    X = scaler.transform([prices])
+    X = scaler.transform(prices)
     y_pred = model.predict(X)
 
     # Reverse the conversion of price from scaled value
@@ -41,7 +42,7 @@ def predict():
 
     logger.debug(f"predicted prices: {predicted_prices}")
 
-    return jsonify(predicted_prices)
+    return jsonify(predicted_prices.tolist())
 
 
 if __name__ == "__main__":

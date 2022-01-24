@@ -23,9 +23,6 @@ def main():
     with open("bin/scaler.bin", "wb") as scaler_bin:
         pickle.dump(scaler, scaler_bin)
 
-    # save for use in test client to randomly create request input
-    window.test_df.to_pickle("bin/test.bin")
-
 
 if __name__ == "__main__":
     main()
