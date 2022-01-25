@@ -42,3 +42,7 @@ heroku-tail:
 bin: build
 	mkdir bin
 	docker run -it --rm -v $(PWD):$(project_dir) $(project) python train.py
+
+data: build
+	mkdir -p data
+	docker run -it --rm -v $(PWD):$(project_dir) $(project) python dump_data.py

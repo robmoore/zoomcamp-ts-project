@@ -10,7 +10,7 @@ import utils
 with open("bin/scaler.bin", mode="rb") as file:
     scaler = pickle.load(file)
 
-model = utils.load_model("tuned_tcn")
+model = utils.load_model("tcn")
 
 
 app = Flask("S&P 500 price forecaster")

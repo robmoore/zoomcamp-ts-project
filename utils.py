@@ -13,8 +13,15 @@ from tcn import TCN
 from yahooquery import Ticker
 
 from constants import INPUT_LENGTH, LABELS_LENGTH
-from models import (last_baseline, lstm, nbeats, repeat_baseline, tcn,
-                    tcn_for_tuning, tuned_tcn)
+from models import (
+    last_baseline,
+    lstm,
+    nbeats,
+    repeat_baseline,
+    tcn,
+    tcn_for_tuning,
+    tuned_tcn,
+)
 from plotable_window_generator import PlotableWindowGenerator
 
 MODEL_FUNCS = {
@@ -128,10 +135,10 @@ def evaluate_model(model, window, scaler):
     return score, scores
 
 
-def build_dataframe(ticker_name="^GSPC"):
+def build_dataframe(ticker_name="^GSPC", start="1999-01-01", end="2020-01-01"):
     ticker = Ticker(ticker_name)
 
-    df = ticker.history(start="1999-01-01", end="2020-01-01")
+    df = ticker.history(start=start, end=end)
 
     # Drop ticker in index and convert dates to datetimes
     df = df.loc[df.index.get_level_values(0)[0]]

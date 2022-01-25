@@ -3,7 +3,7 @@ import pickle
 from utils import build_dataframe, build_model, build_window
 
 label_columns = ["adjclose"]
-model_name = "tuned_tcn"
+model_name = "tcn"
 
 
 def main():
