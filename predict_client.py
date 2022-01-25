@@ -1,9 +1,9 @@
 import argparse
-from typing import Tuple, List
+from typing import List, Tuple
 
 import requests as requests
-from numpy.random import default_rng
 from loguru import logger
+from numpy.random import default_rng
 
 from utils import build_dataframe, split_dataset
 

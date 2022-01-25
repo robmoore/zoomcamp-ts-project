@@ -13,15 +13,8 @@ from tcn import TCN
 from yahooquery import Ticker
 
 from constants import INPUT_LENGTH, LABELS_LENGTH
-from models import (
-    last_baseline,
-    lstm,
-    nbeats,
-    repeat_baseline,
-    tcn,
-    tcn_for_tuning,
-    tuned_tcn,
-)
+from models import (last_baseline, lstm, nbeats, repeat_baseline, tcn,
+                    tcn_for_tuning, tuned_tcn)
 from plotable_window_generator import PlotableWindowGenerator
 
 MODEL_FUNCS = {

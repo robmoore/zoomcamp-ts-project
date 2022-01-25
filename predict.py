@@ -1,9 +1,11 @@
 import logging
 import os
 import pickle
+
 import numpy as np
-import utils
 from flask import Flask, jsonify, request
+
+import utils
 
 with open("bin/scaler.bin", mode="rb") as file:
     scaler = pickle.load(file)
