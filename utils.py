@@ -20,7 +20,6 @@ from models import (
     repeat_baseline,
     tcn,
     tcn_for_tuning,
-    tuned_tcn,
 )
 from plotable_window_generator import PlotableWindowGenerator
 
@@ -29,7 +28,6 @@ MODEL_FUNCS = {
     "last": last_baseline,
     "lstm": lstm,
     "tcn": tcn,
-    "tuned_tcn": tuned_tcn,
     "nbeats": nbeats,
 }
 

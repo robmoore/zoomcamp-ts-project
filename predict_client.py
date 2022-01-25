@@ -1,10 +1,10 @@
 import argparse
+import datetime as dt
 from typing import List, Tuple
 
 import requests as requests
 from loguru import logger
 from numpy.random import default_rng
-import datetime as dt
 
 from utils import build_dataframe
 

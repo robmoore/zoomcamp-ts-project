@@ -1,4 +1,4 @@
-# Machine Learning Zoomcamp Final Project
+# Machine Learning Zoomcamp Third Project
 
 ## Introduction
 
@@ -8,11 +8,25 @@ to provide a practical introduction to machine learning. The course is based on 
 [Machine Learning Bookcamp](https://www.manning.com/books/machine-learning-bookcamp) by
 [Alexey Grigorev](https://alexeygrigorev.com/).
 
-This project was undertaken as a final project for the Machine Learning Zoomcamp course.
+This project was undertaken a project for the Machine Learning Zoomcamp course.
 
 ## Project description
 
-...
+This project grew out of an interest in using machine learning to predict the movement of a stock using only its prior history. Initial research took me to a paper entitled [Comparative Analysis of Deep Learning Models for Multi-Step Prediction of Financial Time Series](https://doi.org/10.3844/jcssp.2020.1401.1416), which reviews the performance of several different deep learning models on various indexes, among them the S&P 500.
+
+The authors, Saugat Aryal et al., suggest two recent innovations (namely, Temporal Convolutional Networks (TCN) and Neural basis expansion analysis for interpretable time series (N-BEATS)) significantly outperform more established ones. Notably, TCN and N-BEATS perform exceptionally well on univariate S&P 500 index data. I decided to use the approach followed in that paper to see if I could reproduce the results and learn about working with time-series data in a machine learning context.
+
+The authors follow an approach of evaluating the performance of a model using a lookback period or window to predict the performance over the following period. They use a window of 16 days to forecast the subject's performance over the next 2, 5, 7, and 10 days.
+
+Furthermore, the authors use a sequence to sequence or multiple-input multiple-output (MIMO) approach to processing the data. This method forecasts each day (t+1 to t+10) simultaneously, producing a single output containing each day (ten values in total) rather than independently retraining and evaluating the model for each forecast period.
+
+The paper discusses utilizing a walk-forward validation approach to evaluating the results using a sliding window that moves day-by-day to arrive at an overall performance value for the entire period.
+
+In implementing the sequence to sequence approach and utilizing walk-forward validation, I was greatly assisted by the article [Multi-Step LSTM Time Series Forecasting Models for Power Usage](https://machinelearningmastery.com/how-to-develop-lstm-models-for-multi-step-time-series-forecasting-of-household-power-consumption/) by Jason Brownlee. Furthermore, the example of implementing time-series analysis in the [Tensorflow tutorial on time-series analysis](https://www.tensorflow.org/tutorials/structured_data/time_series) and its sample code proved invaluable.
+
+My findings suggest that while these approaches work well to minimize the error in predicting future prices, they do not perform better than the baseline approach of using the value of the last day in the lookback period as the expected value. Moreover, they appear to mimic the 'last' baseline method in arriving at a prediction. This outcome suggests that the random-walk nature of the data results in a model that is no better than a naive prediction.
+
+## Project tour
 
 Some files of interest:
 
@@ -23,6 +37,7 @@ Some files of interest:
 - [predict_client.py](predict_client.py): An example client used to request predictions.
 - [Pipfile](Pipfile): Defines the project dependencies.
 - [Procfile](Procfile): Used by [Heroku](https://heroku.com) to run the prediction service.
+- [data](data/gspc.csv): Example of data used to train the model.
 
 ## Getting started
 
