@@ -93,3 +93,9 @@ def tcn_for_tuning(hp):
     model.add(tf.keras.layers.Dense(LABELS_LENGTH))
 
     return model
+
+
+# nb_filters: 110
+# kernel_size: 1
+# dropout_rate: 0.0
+# 0.10593746602535248

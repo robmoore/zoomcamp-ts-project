@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+import tensorflow_addons as tfa
+from nbeats_keras.model import NBeatsNet
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -11,21 +13,9 @@ from tcn import TCN
 from yahooquery import Ticker
 
 from constants import INPUT_LENGTH, LABELS_LENGTH
-from models import (
-    last_baseline,
-    lstm,
-    nbeats,
-    repeat_baseline,
-    tcn,
-    tuned_tcn,
-    tcn_for_tuning,
-)
+from models import (last_baseline, lstm, nbeats, repeat_baseline, tcn,
+                    tcn_for_tuning, tuned_tcn)
 from plotable_window_generator import PlotableWindowGenerator
-import tensorflow_addons as tfa
-
-# multi_val_performance['LSTM'] = multi_lstm_model.evaluate(multi_window.val)
-# multi_performance['LSTM'] = multi_lstm_model.evaluate(multi_window.test, verbose=0)
-# multi_window.plot(multi_lstm_model)
 
 MODEL_FUNCS = {
     "repeat": repeat_baseline,
@@ -35,36 +25,6 @@ MODEL_FUNCS = {
     "tuned_tcn": tuned_tcn,
     "nbeats": nbeats,
 }
-
-
-# TODO keep this?
-def plot_model_performance(
-    multi_performance: dict[str, dict[int, float]],
-    multi_val_performance: dict[str, dict[int, float]],
-):
-    x = np.arange(len(multi_performance))
-
-    width = 0.3
-
-    # metric_name = "mean_absolute_error"
-    metric_index = 0  # lstm_model.metrics_names.index("mean_absolute_error")
-    val_mae = [v[metric_index] for v in multi_val_performance.values()]
-    test_mae = [v[metric_index] for v in multi_performance.values()]
-
-    plt.bar(x - 0.17, val_mae, width, label="Validation")
-    plt.bar(x + 0.17, test_mae, width, label="Test")
-    plt.xticks(ticks=x, labels=multi_performance.keys(), rotation=45)
-    plt.ylabel(f"MAE (average over all times and outputs)")
-    _ = plt.legend()
-
-
-# TODO keep this?
-def print_model_performance(
-    multi_performance: dict[str, dict[int, float]],
-    # multi_val_performance: dict[str, float],
-):
-    for name, value in multi_performance.items():
-        print(f"{name:8s}: {value[1]:0.4f}")
 
 
 def split_dataset(data):
@@ -217,8 +177,7 @@ def generate_actuals_and_predictions(model, window, scaler):
     return actuals, predictions
 
 
-# TODO rename
-def plot_offset(actuals, predictions, window, forecast_index=0, day_slice=slice(None)):
+def plot_results(actuals, predictions, window, forecast_index=0, day_slice=slice(None)):
     offset_df = pd.DataFrame(
         {
             "actuals": actuals[:, forecast_index],
@@ -232,7 +191,6 @@ def plot_offset(actuals, predictions, window, forecast_index=0, day_slice=slice(
 
 
 def load_model(model_name):
-    # TODO Add other custom objects like n-beats
     return tf.keras.models.load_model(
-        f"bin/{model_name}.h5", custom_objects={"TCN": TCN}
+        f"bin/{model_name}", custom_objects={"TCN": TCN, "NBeatsNet": NBeatsNet}
     )

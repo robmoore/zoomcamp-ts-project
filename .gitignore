@@ -1,3 +1,5 @@
 .idea
 .ipynb_checkpoints
 s+p-500-forecasting
+.python-version
+__pycache__
