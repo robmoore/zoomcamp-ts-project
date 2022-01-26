@@ -25,6 +25,10 @@ run-client-local: build
 run-client-remote:
 	docker run --rm -v $(PWD):$(project_dir) $(project) python predict_client.py --url https://$(project).herokuapp.com/predict
 
+.PHONY: train-model
+train-model:
+	docker run --rm -v $(PWD):$(project_dir) $(project) python train.py
+
 .PHONY: heroku-login
 heroku-login:
 	heroku login

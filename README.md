@@ -32,8 +32,11 @@ Some files of interest:
 
 - [notebook-eda.ipynb](notebook-eda.ipynb): The Jupyter notebook used to perform EDA. 
 - [notebook-model.ipynb](notebook-eda.ipynb): The Jupyter notebook used to select and tune models.
-- [train.py](train.py): Produces the model binary used by the service to perform predictions.
+- [train.py](train.py): Produces the model files used by the service to perform predictions.
 - [predict.py](predict.py): Implementation of the prediction service using [Flask](https://flask.palletsprojects.com/).
+- [models.py](models.py): Produces the models used in the Jupyter notebook.
+- [utils.py](utils.py): Utility functions used in the Jupyter notebook and other modules.
+- [constants.py](constants.py): Constant values used across modules.
 - [predict_client.py](predict_client.py): An example client used to request predictions.
 - [Pipfile](Pipfile): Defines the project dependencies.
 - [Procfile](Procfile): Used by [Heroku](https://heroku.com) to run the prediction service.
