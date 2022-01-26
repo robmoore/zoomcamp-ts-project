@@ -85,23 +85,27 @@ def fit_model(
     batch_size=32,
     patience=100,
 ):
+    callbacks = [
+        tf.keras.callbacks.EarlyStopping(
+            monitor="val_root_mean_squared_error",
+            min_delta=1e-4,
+            patience=patience,
+            verbose=1,
+            mode="auto",
+            restore_best_weights=True,
+        )
+    ]
+
+    if verbose:
+        callbacks.append(tfa.callbacks.TQDMProgressBar())
+
     model.fit(
         window.train(),
         validation_data=window.val(),
         epochs=epochs,
         batch_size=batch_size,
         verbose=verbose,
-        callbacks=[
-            tf.keras.callbacks.EarlyStopping(
-                monitor="val_root_mean_squared_error",
-                min_delta=1e-4,
-                patience=patience,
-                verbose=1,
-                mode="auto",
-                restore_best_weights=True,
-            ),
-            tfa.callbacks.TQDMProgressBar(),
-        ],
+        callbacks=callbacks,
     )
 
 
