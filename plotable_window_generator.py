@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import tensorflow as tf
-from slidingwindow_generator.slidingwindow_generator import SlidingWindowGenerator
+from slidingwindow_generator.slidingwindow_generator import \
+    SlidingWindowGenerator
 
 
 # The sliding window generator is taken from the Tensorflow time-series tutorial

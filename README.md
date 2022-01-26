@@ -34,24 +34,23 @@ values in total) rather than independently retraining and evaluating the model f
 The paper discusses utilizing a walk-forward validation approach to evaluating the results using a sliding window that
 moves day-by-day to arrive at an overall performance value for the entire period.
 
-In implementing the sequence to sequence approach and utilizing walk-forward validation, I was greatly assisted by the
+[Notebooks](https://github.com/itsaugat/time-series-prediction) by the primary author of the above-mentioned paper were
+instrumental in understanding the details of the paper and replicating its approach. In following the specifics of the
+sequence to sequence model and walk-forward validation, I was greatly assisted by the
 article [Multi-Step LSTM Time Series Forecasting Models for Power Usage](https://machinelearningmastery.com/how-to-develop-lstm-models-for-multi-step-time-series-forecasting-of-household-power-consumption/)
-by Jason Brownlee. Furthermore, the example of implementing time-series analysis in
+by Jason Brownlee. Finally, the example of implementing time-series analysis in
 the [Tensorflow tutorial on time-series analysis](https://www.tensorflow.org/tutorials/structured_data/time_series) and
-its sample code proved invaluable.
+its sample code (particularly the window generator) proved invaluable.
 
 My findings suggest that while these approaches work well to minimize the error in predicting future prices, they do not
 perform better than the baseline approach of using the value of the last day in the lookback period as the expected
-value. Moreover, they appear to mimic the 'last' baseline method in arriving at a prediction. This outcome suggests that
+value. Moreover, they appear to mimic the 'last' baseline method described in the project notebooks in arriving at a prediction. This outcome suggests that
 the random-walk nature of the data results in a model that is no better than a naive prediction.
 
-Future directions include incorporating other signals into the data (ie, multi-variate models), such as technical signals
-such as those provided by
-[ta-lib](https://mrjbq7.github.io/ta-lib/funcs.html) or external sources, such
+Future directions include incorporating other signals into the data (ie, multivariate models). Examples of such data include technical
+signals (eg, those implemented by [ta-lib](https://mrjbq7.github.io/ta-lib/funcs.html)) and external sources, such
 as [market sentiment indicators](https://www.investopedia.com/terms/m/marketsentiment.asp)
-or traditional and social media (as described
-in [Sentiment correlation in financial news networks and associated market movements](https://www.nature.com/articles/s41598-021-82338-6))
-.
+or traditional/social media. A detailed look at the later approach can be found in [Sentiment correlation in financial news networks and associated market movements](https://www.nature.com/articles/s41598-021-82338-6).
 
 ## Project tour
 

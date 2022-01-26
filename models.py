@@ -47,6 +47,21 @@ def tcn() -> tf.keras.Sequential:
     return model
 
 
+def tuned_tcn() -> tf.keras.Sequential:
+    model = tf.keras.Sequential()
+    model.add(
+        TCN(
+            nb_filters=110,
+            kernel_size=3,
+            dilations=[1, 2, 4, 8],
+            input_shape=(INPUT_LENGTH, FEATURES_LENGTH),
+        )
+    )
+    model.add(tf.keras.layers.Dense(LABELS_LENGTH))
+
+    return model
+
+
 def nbeats() -> NBeatsNet:
     return NBeatsNet(
         backcast_length=INPUT_LENGTH,
