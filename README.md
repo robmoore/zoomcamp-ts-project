@@ -8,7 +8,7 @@ to provide a practical introduction to machine learning. The course is based on 
 [Machine Learning Bookcamp](https://www.manning.com/books/machine-learning-bookcamp) by
 [Alexey Grigorev](https://alexeygrigorev.com/).
 
-This project was undertaken a project for the Machine Learning Zoomcamp course.
+This project was undertaken as a project for the Machine Learning Zoomcamp course.
 
 ## Project description
 
@@ -16,7 +16,7 @@ This project grew out of an interest in using machine learning to predict the mo
 
 The authors, Saugat Aryal et al., suggest two recent innovations (namely, Temporal Convolutional Networks (TCN) and Neural basis expansion analysis for interpretable time series (N-BEATS)) significantly outperform more established ones. Notably, TCN and N-BEATS perform exceptionally well on univariate S&P 500 index data. I decided to use the approach followed in that paper to see if I could reproduce the results and learn about working with time-series data in a machine learning context.
 
-The authors follow an approach of evaluating the performance of a model using a lookback period or window to predict the performance over the following period. They use a window of 16 days to forecast the subject's performance over the next 2, 5, 7, and 10 days.
+The authors follow an approach of evaluating the performance of a model using a lookback period or window to predict the performance over the following period. They use a window of 16 days to forecast the subject's performance over the next 2, 3, 5, 7, and 10 days.
 
 Furthermore, the authors use a sequence to sequence or multiple-input multiple-output (MIMO) approach to processing the data. This method forecasts each day (t+1 to t+10) simultaneously, producing a single output containing each day (ten values in total) rather than independently retraining and evaluating the model for each forecast period.
 

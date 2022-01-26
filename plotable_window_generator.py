@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import tensorflow as tf
-from slidingwindow_generator.slidingwindow_generator import \
-    SlidingWindowGenerator
+from slidingwindow_generator.slidingwindow_generator import SlidingWindowGenerator
 
 
+# The sliding window generator is taken from the Tensorflow time-series tutorial
 class PlotableWindowGenerator(SlidingWindowGenerator):
     # Taken from https://www.tensorflow.org/tutorials/structured_data/time_series
     def plot(
