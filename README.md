@@ -57,7 +57,7 @@ or traditional/social media. A detailed look at the later approach can be found 
 Some files of interest:
 
 - [notebook-eda.ipynb](notebook-eda.ipynb): The Jupyter notebook used to perform EDA.
-- [notebook-model.ipynb](notebook-eda.ipynb): The Jupyter notebook used to select and tune models.
+- [notebook-model.ipynb](notebook-model.ipynb): The Jupyter notebook used to select and tune models.
 - [train.py](train.py): Produces the model files used by the service to perform predictions.
 - [predict.py](predict.py): Implementation of the prediction service using [Flask](https://flask.palletsprojects.com/).
 - [models.py](models.py): Produces the models used in the Jupyter notebook.
